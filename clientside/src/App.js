@@ -9,7 +9,7 @@ function App() {
  
   const { pairs } = item;
  
-  const contractAddress ='0x5aF5e016576A9186964c3F396b6632b8e67436a0';
+  const contractAddress ='0x431aAA366Adb342735cd2C4C031a0151F698495b';
   const ABI = [
     {
       "inputs": [],
@@ -17,7 +17,13 @@ function App() {
       "type": "constructor"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "pair",
+          "type": "uint256"
+        }
+      ],
       "name": "getChainlinkDataFeedLatestAnswer",
       "outputs": [
         {
@@ -71,30 +77,32 @@ function App() {
  
   return (
     <div className='container'>
-    <Image width='200px' height='200px' fluid className='mt-5' src='https://seeklogo.com/images/C/chainlink-logo-B072B6B9FE-seeklogo.com.png'/>
-    <br/>
-   <div className='row'></div> 
-    <div className='col-md-6'>
-    <Card style={{ width: '32rem' }} className='mt-5 shadow bg-body rounded'>
-      <Card.Header a5='h5'>Conversion Pair</Card.Header>
-      <Card.Body>
-      <div className='col'>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId='pairs'>
-            <Form.Check value='BTC/USD' type='radio' onChange={handleChange} aria-label='radio-1' label='BTC/USD' checked={pairs === 'BTC/USD'}/>
-            <Form.Check value='ETH/USD' type='radio' onChange={handleChange} aria-label='radio-2' label='ETH/USD' checked={pairs === 'ETH/USD'}/>
-            <Form.Check value='LINK/USD' type='radio' onChange={handleChange} aria-label='radio-3' label='LINK/USD' checked={pairs === 'LINK/USD'}/>
-            <Form.Check value='BTC/ETH' type='radio' onChange={handleChange} aria-label='radio-4' label='BTC/ETH' checked={pairs === 'BTC/ETH'}/>
-          </Form.Group>
-        </Form>
-        <div className='mt-5'>
-          <Button type='submit' onClick={getPair} size='sm' variant='outline-primary'>
-            Get Answer from Chainlink Oracle
-          </Button>
-        </div>
-        </div>
-      </Card.Body>
-    </Card>
+              <Image width='200px' height='200px' fluid className='mt-5' src='https://seeklogo.com/images/C/chainlink-logo-B072B6B9FE-seeklogo.com.png'/>
+              <br/>
+   <div className='row'>
+          <div className='col-md-6'>
+              <Card style={{ width: '32rem' }} className='mt-5 shadow bg-body rounded'>
+                <Card.Header a5='h5'>Conversion Pair</Card.Header>
+                <Card.Body>
+                <div className='col-md-6'>
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId='pairs'>
+                      <Form.Check value='BTC/USD' type='radio' onChange={handleChange} aria-label='radio-1' label='BTC/USD' checked={pairs === 'BTC/USD'}/>
+                      <Form.Check value='ETH/USD' type='radio' onChange={handleChange} aria-label='radio-2' label='ETH/USD' checked={pairs === 'ETH/USD'}/>
+                      <Form.Check value='LINK/USD' type='radio' onChange={handleChange} aria-label='radio-3' label='LINK/USD' checked={pairs === 'LINK/USD'}/>
+                      <Form.Check value='BTC/ETH' type='radio' onChange={handleChange} aria-label='radio-4' label='BTC/ETH' checked={pairs === 'BTC/ETH'}/>
+                    </Form.Group>
+                  </Form>
+                  <div className='mt-5'>
+                    <Button type='submit' onClick={getPair} size='sm' variant='outline-primary'>
+                      Get Answer from Chainlink Oracle
+                    </Button>
+                  </div>
+                </div>
+                </Card.Body>
+              </Card>
+          </div>
+
         <div className='col-md-6'>
           <Card style={{ width: '32rem' }} className='mt-5 shadow bg-body rounded'>
             <Card.Header a5='h5'>Result</Card.Header>
